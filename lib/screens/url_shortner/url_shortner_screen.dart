@@ -1,5 +1,5 @@
-import 'package:code_test/screens/url_shortner/widgets/recently_shortened_urls.dart';
-import 'package:code_test/screens/url_shortner/widgets/search_bar.dart';
+import 'package:code_test/screens/url_shortner/widgets/recently_shortened_urls_widget.dart';
+import 'package:code_test/screens/url_shortner/widgets/url_entry_widget.dart';
 import 'package:code_test/style.dart';
 import 'package:flutter/material.dart';
 
@@ -19,11 +19,11 @@ class UrlShortenerScreen extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          SearchBar(),
+          UrlEntryWidget(),
           SizedBox(
             height: 34,
           ),
-          Expanded(child: RecentlyShortenedUrls()),
+          Expanded(child: RecentlyShortenedUrlsWidget()),
         ],
       ),
     );

@@ -12,6 +12,6 @@ class RecentUrlsCubit extends Cubit<List<ShortenedUrl>> {
   }
 
   void removeShortenedUrl(String alias) {
-    emit(state.where((e) => e.alias!=alias).toList());
+    emit(state.where((e) => e.alias != alias).toList());
   }
 }

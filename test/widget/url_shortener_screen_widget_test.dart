@@ -3,8 +3,8 @@ import 'package:code_test/bloc/recent_urls_cubit.dart';
 import 'package:code_test/repository/data/response_model.dart';
 import 'package:code_test/repository/data/shortened_url_model.dart';
 import 'package:code_test/screens/url_shortner/url_shortner_screen.dart';
-import 'package:code_test/screens/url_shortner/widgets/recently_shortened_urls.dart';
-import 'package:code_test/screens/url_shortner/widgets/search_bar.dart';
+import 'package:code_test/screens/url_shortner/widgets/recently_shortened_urls_widget.dart';
+import 'package:code_test/screens/url_shortner/widgets/url_entry_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -65,17 +65,18 @@ Widget _layout() => MaterialApp(
 class _UrlShortenerPageObject extends PageObject<UrlShortenerScreen> {
   _UrlShortenerPageObject(super.tester);
 
-  Finder get urlTextField => pageFinder(find.byKey(SearchBarKeys.urlTextField));
+  Finder get urlTextField =>
+      pageFinder(find.byKey(UrlEntryWidgetKeys.urlTextField));
 
   Finder get activeSendButton =>
-      pageFinder(find.byKey(SearchBarKeys.activeSendButton));
+      pageFinder(find.byKey(UrlEntryWidgetKeys.activeSendButton));
 
-  Finder get processingUrlView =>
-      pageFinder(find.byKey(SearchBarKeys.processingUrlView));
+  Finder get processingUrlLoader =>
+      pageFinder(find.byKey(UrlEntryWidgetKeys.processingUrlLoader));
 
   Finder get emptyRecentUrlsLayout =>
-      pageFinder(find.byKey(RecentlyShortenedUrlsKeys.emptyDataLayout));
+      pageFinder(find.byKey(RecentlyShortenedUrlsWidgetKeys.emptyDataLayout));
 
   Finder get loadedRecentUrlsLayout =>
-      pageFinder(find.byKey(RecentlyShortenedUrlsKeys.loadedUrlLayout));
+      pageFinder(find.byKey(RecentlyShortenedUrlsWidgetKeys.loadedUrlLayout));
 }

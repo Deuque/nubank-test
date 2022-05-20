@@ -4,13 +4,13 @@ import 'package:code_test/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class RecentlyShortenedUrlsKeys {
+abstract class RecentlyShortenedUrlsWidgetKeys {
   static const Key emptyDataLayout = Key('emptyDataLayout');
   static const Key loadedUrlLayout = Key('loadedUrlLayout');
 }
 
-class RecentlyShortenedUrls extends StatelessWidget {
-  const RecentlyShortenedUrls({Key? key}) : super(key: key);
+class RecentlyShortenedUrlsWidget extends StatelessWidget {
+  const RecentlyShortenedUrlsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class RecentlyShortenedUrls extends StatelessWidget {
   }
 
   Widget _emptyDataLayout() => Column(
-        key: RecentlyShortenedUrlsKeys.emptyDataLayout,
+        key: RecentlyShortenedUrlsWidgetKeys.emptyDataLayout,
         children: [
           const Spacer(
             flex: 2,
@@ -65,7 +65,7 @@ class RecentlyShortenedUrls extends StatelessWidget {
     List<ShortenedUrl> shortenedUrls,
   ) =>
       ListView.separated(
-        key: RecentlyShortenedUrlsKeys.loadedUrlLayout,
+        key: RecentlyShortenedUrlsWidgetKeys.loadedUrlLayout,
         itemBuilder: (_, i) => _urlItem(context, shortenedUrls[i]),
         separatorBuilder: (_, __) => Divider(
           height: 1,

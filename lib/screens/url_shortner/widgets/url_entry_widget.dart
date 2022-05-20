@@ -4,20 +4,20 @@ import 'package:code_test/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class SearchBarKeys {
-  static const Key activeSendButton = Key('activeSearchButton');
-  static const Key processingUrlView = Key('loadingSearchView');
-  static const Key urlTextField = Key('searchTextField');
+abstract class UrlEntryWidgetKeys {
+  static const Key activeSendButton = Key('activeSendButton');
+  static const Key processingUrlLoader = Key('processingUrlLoader');
+  static const Key urlTextField = Key('urlTextField');
 }
 
-class SearchBar extends StatefulWidget {
-  const SearchBar({Key? key}) : super(key: key);
+class UrlEntryWidget extends StatefulWidget {
+  const UrlEntryWidget({Key? key}) : super(key: key);
 
   @override
-  State<SearchBar> createState() => _SearchBarState();
+  State<UrlEntryWidget> createState() => _UrlEntryWidgetState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _UrlEntryWidgetState extends State<UrlEntryWidget> {
   TextEditingController controller = TextEditingController();
 
   @override
@@ -39,7 +39,7 @@ class _SearchBarState extends State<SearchBar> {
                   ),
                   Expanded(
                     child: TextField(
-                      key: SearchBarKeys.urlTextField,
+                      key: UrlEntryWidgetKeys.urlTextField,
                       controller: controller,
                       keyboardType: TextInputType.url,
                       onEditingComplete: _processUrl,
@@ -76,13 +76,13 @@ class _SearchBarState extends State<SearchBar> {
           const SizedBox(
             width: 10,
           ),
-          _searchButtonLayout(),
+          _sendButtonLayout(),
         ],
       ),
     );
   }
 
-  Widget _searchButtonLayout() {
+  Widget _sendButtonLayout() {
     return SizedBox(
       height: 35,
       width: 35,
@@ -93,13 +93,14 @@ class _SearchBarState extends State<SearchBar> {
           } else if (state.shortenedUrl != null) {
             BlocProvider.of<RecentUrlsCubit>(context)
                 .addNewShortenedUrl(state.shortenedUrl!);
+            controller.clear();
           }
         },
         builder: (context, state) {
           return state.loading == true
               ? const Center(
                   child: SizedBox(
-                    key: SearchBarKeys.processingUrlView,
+                    key: UrlEntryWidgetKeys.processingUrlLoader,
                     height: 20,
                     width: 20,
                     child: CircularProgressIndicator(
@@ -110,7 +111,7 @@ class _SearchBarState extends State<SearchBar> {
               : GestureDetector(
                   onTap: _processUrl,
                   child: CircleAvatar(
-                    key: SearchBarKeys.activeSendButton,
+                    key: UrlEntryWidgetKeys.activeSendButton,
                     radius: 20,
                     backgroundColor: AppColors.primary,
                     child: Image.asset(
