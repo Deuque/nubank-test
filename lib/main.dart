@@ -20,14 +20,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: AppColors.primary,
       ),
-      home: MultiBlocProvider(providers: [
-        BlocProvider(
-          create: (_) => CreateAliasCubit(AliasRepository()),
-        ),
-        BlocProvider(
-          create: (_) => RecentUrlsCubit(),
-        )
-      ], child: const UrlShortenerScreen()),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => CreateAliasCubit(AliasRepository()),
+          ),
+          BlocProvider(
+            create: (_) => RecentUrlsCubit(),
+          )
+        ],
+        child: const UrlShortenerScreen(),
+      ),
     );
   }
 }

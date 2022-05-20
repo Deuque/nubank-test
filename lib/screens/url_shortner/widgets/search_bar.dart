@@ -26,34 +26,35 @@ class _SearchBarState extends State<SearchBar> {
       child: Row(
         children: [
           Expanded(
-              child: Container(
-            decoration: BoxDecoration(
+            child: Container(
+              decoration: BoxDecoration(
                 color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(50)),
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 20,
-                ),
-                Expanded(
-                  child: TextField(
-                    controller: controller,
-                    keyboardType: TextInputType.url,
-                    onEditingComplete: _processUrl,
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.zero,
-                      hintText: 'Enter a url',
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: controller,
+                      keyboardType: TextInputType.url,
+                      onEditingComplete: _processUrl,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.zero,
+                        hintText: 'Enter a url',
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                      ),
                     ),
                   ),
-                ),
-                ValueListenableBuilder<TextEditingValue>(
-                  valueListenable: controller,
-                  builder: (_, value, __) => Visibility(
-                    visible: value.text.isNotEmpty,
-                    child: IconButton(
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: controller,
+                    builder: (_, value, __) => Visibility(
+                      visible: value.text.isNotEmpty,
+                      child: IconButton(
                         onPressed: () {
                           controller.clear();
                           setState(() {});
@@ -62,12 +63,14 @@ class _SearchBarState extends State<SearchBar> {
                           'assets/cancel.png',
                           height: 15,
                           color: Colors.grey[600],
-                        )),
-                  ),
-                )
-              ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          )),
+          ),
           const SizedBox(
             width: 10,
           ),

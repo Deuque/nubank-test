@@ -8,9 +8,11 @@ import 'package:http/http.dart' as http;
 class AliasRepository {
   Future<ResponseModel> createAlias(String urlToBeShortened) {
     return HttpCaller.makeCall(
-      call: () => http.post(Uri.parse(createAliasUrl),
-          body: jsonEncode({'url': urlToBeShortened}),
-          headers: {'content-type': 'application/json'}),
+      call: () => http.post(
+        Uri.parse(createAliasUrl),
+        body: jsonEncode({'url': urlToBeShortened}),
+        headers: {'content-type': 'application/json'},
+      ),
       onError: (error, code) => ErrorResponse(error),
       onSuccess: (response) {
         Map<String, dynamic> decodedValue = jsonDecode(response.body);

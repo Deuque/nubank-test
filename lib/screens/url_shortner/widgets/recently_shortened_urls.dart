@@ -26,13 +26,15 @@ class RecentlyShortenedUrls extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Expanded(child: BlocBuilder<RecentUrlsCubit, List<ShortenedUrl>>(
-            builder: (_, state) {
-              return state.isEmpty
-                  ? _emptyDataLayout()
-                  : _loadedUrlsLayout(context, state);
-            },
-          ))
+          Expanded(
+            child: BlocBuilder<RecentUrlsCubit, List<ShortenedUrl>>(
+              builder: (_, state) {
+                return state.isEmpty
+                    ? _emptyDataLayout()
+                    : _loadedUrlsLayout(context, state);
+              },
+            ),
+          )
         ],
       ),
     );
@@ -63,13 +65,14 @@ class RecentlyShortenedUrls extends StatelessWidget {
     List<ShortenedUrl> shortenedUrls,
   ) =>
       ListView.separated(
-          key: RecentlyShortenedUrlsKeys.loadedUrlLayout,
-          itemBuilder: (_, i) => _urlItem(context, shortenedUrls[i]),
-          separatorBuilder: (_, __) => Divider(
-                height: 1,
-                color: Colors.grey[400],
-              ),
-          itemCount: shortenedUrls.length);
+        key: RecentlyShortenedUrlsKeys.loadedUrlLayout,
+        itemBuilder: (_, i) => _urlItem(context, shortenedUrls[i]),
+        separatorBuilder: (_, __) => Divider(
+          height: 1,
+          color: Colors.grey[400],
+        ),
+        itemCount: shortenedUrls.length,
+      );
 
   Widget _urlItem(BuildContext context, ShortenedUrl shortenedUrl) {
     return Dismissible(
