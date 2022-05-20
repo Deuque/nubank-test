@@ -79,7 +79,7 @@ class RecentlyShortenedUrls extends StatelessWidget {
       key: ValueKey(shortenedUrl.alias),
       onDismissed: (_) {
         BlocProvider.of<RecentUrlsCubit>(context)
-            .removeShortenedUrl(shortenedUrl);
+            .removeShortenedUrl(shortenedUrl.alias);
       },
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(vertical: 5),

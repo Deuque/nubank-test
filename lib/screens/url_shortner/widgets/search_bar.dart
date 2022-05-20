@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class SearchBarKeys {
-  static const Key activeSearchButton = Key('activeSearchButton');
-  static const Key loadingSearchView = Key('loadingSearchView');
+  static const Key activeSendButton = Key('activeSearchButton');
+  static const Key processingUrlView = Key('loadingSearchView');
+  static const Key urlTextField = Key('searchTextField');
 }
 
 class SearchBar extends StatefulWidget {
@@ -38,6 +39,7 @@ class _SearchBarState extends State<SearchBar> {
                   ),
                   Expanded(
                     child: TextField(
+                      key: SearchBarKeys.urlTextField,
                       controller: controller,
                       keyboardType: TextInputType.url,
                       onEditingComplete: _processUrl,
@@ -97,7 +99,7 @@ class _SearchBarState extends State<SearchBar> {
           return state.loading == true
               ? const Center(
                   child: SizedBox(
-                    key: SearchBarKeys.loadingSearchView,
+                    key: SearchBarKeys.processingUrlView,
                     height: 20,
                     width: 20,
                     child: CircularProgressIndicator(
@@ -108,7 +110,7 @@ class _SearchBarState extends State<SearchBar> {
               : GestureDetector(
                   onTap: _processUrl,
                   child: CircleAvatar(
-                    key: SearchBarKeys.activeSearchButton,
+                    key: SearchBarKeys.activeSendButton,
                     radius: 20,
                     backgroundColor: AppColors.primary,
                     child: Image.asset(
