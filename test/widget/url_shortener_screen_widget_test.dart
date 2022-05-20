@@ -26,7 +26,7 @@ void main() {
     final pageObject = _UrlShortenerPageObject(tester);
     await tester.pumpWidget(_layout());
 
-    // emter url and tap send
+    // enter url and tap send
     await tester.enterText(pageObject.urlTextField, 'http://google.com');
     await pageObject.tapView(pageObject.activeSendButton);
 
